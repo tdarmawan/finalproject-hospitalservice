@@ -1,0 +1,20 @@
+#please make docker compose file for this project with 2 services
+#1. server service at server/main.go
+#2. client service at client/main.go
+
+version: 'version 3'
+
+services:
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile.server
+    ports:
+      - 8080:8080
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile.client
+    depends_on:
+      - server

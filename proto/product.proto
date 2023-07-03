@@ -1,0 +1,113 @@
+syntax = "proto3";
+package go_grpc;
+
+option go_package = "testing/product";
+
+message Product {
+    string id = 1;
+    string name = 2;
+    float price = 3;
+}
+
+service ProductService {
+    rpc GetAllProducts(GetAllProductsRequest) returns (GetAllProductsResponse) {}
+    rpc GetProductById(GetProductByIdRequest) returns (GetProductByIdResponse) {}
+    rpc AddProduct(AddProductRequest) returns (AddProductResponse) {}
+    rpc UpdateProduct(UpdateProductRequest) returns (UpdateProductResponse) {}
+    rpc DeleteProduct(DeleteProductRequest) returns (DeleteProductResponse) {}
+}
+
+message GetAllProductsRequest {
+
+}
+message GetProductByIdRequest {
+    string id = 1;
+  }
+  
+  message AddProductRequest {
+    string name = 1;
+    string description = 2;
+    float price = 3;
+    int32 stock = 4;
+  }
+
+  message UpdateProductRequest {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    float price = 4;
+    int32 stock = 5;
+  }
+  message DeleteProductRequest {
+    string id = 1;
+  }
+  
+
+message GetAllProductsResponse {
+    repeated Product products = 1;
+}
+  
+  message GetProductByIdResponse {
+    string id = 1;
+    string name = 2;
+    string description = 3;
+    float price = 4;
+    int32 stock = 5;
+  }
+  
+  
+  message AddProductResponse {
+    string id = 1;
+  }
+  
+  message UpdateProductResponse {
+    string message = 1;
+  }
+  
+  message DeleteProductResponse {
+    string message = 1;
+  }
+
+
+
+// protoc --proto_path=protos protos/*.proto --go_out=/Users/hacktiv8/go/src --go-grpc_out=/Users/hacktiv8/go/src
+// protoc --proto_path=protos protos/*.proto --go_out=$GOPATH/src --go-grpc_out=$GOPATH/src
+// tapi ini err
+// source ~/.bash_profile
+// go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest if notfound
+// sudo cp protoc-gen-go-grpc /usr/local/bin/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

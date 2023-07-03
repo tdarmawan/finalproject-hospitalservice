@@ -1,0 +1,49 @@
+// make file proto for schedule availability doctor from doctor.proto file
+
+syntax = "proto3";
+
+package schedule;
+
+option go_package = "./schedule";
+
+message ScheduleAvailabilityDoctor {
+    string id = 1;
+    int32 doctor_id = 2;
+    string day = 3;
+    string start_time = 4;
+    string end_time = 5;
+}
+
+message ScheduleAvailabilityDoctorResponse {
+    repeated ScheduleAvailabilityDoctor data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message ScheduleAvailabilityDoctorRequest {
+    string id = 1;
+    int32 doctor_id = 2;
+    string day = 3;
+    string start_time = 4;
+    string end_time = 5;
+}
+
+message ScheduleAvailabilityDoctorRequestByDoctorId {
+    int32 doctor_id = 1;
+}
+
+message ScheduleAvailabilityDoctorRequestByDay {
+    string day = 1;
+}
+
+service ScheduleAvailabilityDoctorService {
+    rpc Create(ScheduleAvailabilityDoctorRequest) returns (ScheduleAvailabilityDoctorResponse);
+    rpc Read(ScheduleAvailabilityDoctorRequest) returns (ScheduleAvailabilityDoctorResponse);
+    rpc ReadScheduleByDoctorId(ScheduleAvailabilityDoctorRequestByDoctorId) returns (ScheduleAvailabilityDoctorResponse);
+    rpc ReadScheduleByDay(ScheduleAvailabilityDoctorRequestByDay) returns (ScheduleAvailabilityDoctorResponse);
+    rpc Update(ScheduleAvailabilityDoctorRequest) returns (ScheduleAvailabilityDoctorResponse);
+    rpc Delete(ScheduleAvailabilityDoctorRequest) returns (ScheduleAvailabilityDoctorResponse);
+}
+
+
+

@@ -1,0 +1,55 @@
+// make proto file for hospital data and make a service for it
+// the proto hospital can have doctor and patient as a nested message
+// the proto file can have a service for the hospital
+
+syntax = "proto3";
+
+package hospital;
+
+option go_package = "./hospital";
+
+message Patient {
+    string identityId = 1;
+    string name = 2;
+    int32 age = 3;
+    string disease = 4;
+    string hospitalcode = 5;
+}
+
+message Hospital {
+    string hospitalcode = 1;
+    string name = 2;
+    string address = 3;
+}
+
+service HospitalService {
+    rpc CreateHospital(Hospital) returns (HospitalResponse) {}
+    rpc GetHospital(HospitalRequest) returns (HospitalResponse) {}
+    rpc GetPatients(PatientRequest) returns (PatientResponse) {}
+    rpc AddPatient(Patient) returns (PatientResponse) {}
+    rpc GetPatientById(PatientId) returns (PatientResponse) {}
+}
+
+message HospitalRequest {
+    string hospitalcode = 1;
+}
+
+message HospitalResponse {
+    repeated Hospital data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message PatientRequest {
+    string identityId = 1;
+}
+
+message PatientResponse {
+    repeated Patient data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message PatientId {
+    string identityId = 1;
+}

@@ -1,0 +1,66 @@
+//make proto file for doctor data with field doctor_id, name, speciality, email, password, phone, address, city, state, country, profile_pic, status, created_at, updated_at
+
+syntax = "proto3";
+
+package doctor;
+
+option go_package = "./doctor";
+
+service DoctorService {
+    rpc CreateDoctor(DoctorRequest ) returns (DoctorResponse) {}
+    rpc GetDoctorById(DoctorId) returns (DoctorResponse) {}
+    rpc GetDoctorByHospitalId(HospitalId) returns (DoctorList) {}
+    rpc UpdateDoctor(DoctorRequest) returns (DoctorResponse) {}
+    rpc DeleteDoctor(DoctorId) returns (DoctorResponse) {}
+    rpc GetAllDoctors(empty) returns (DoctorList) {}
+}
+
+message DoctorRequest {
+    int32 doctor_id = 1;
+    string name = 2;
+    string speciality = 3;
+    int32 hospital_id = 4;
+    string email = 5;
+    string password = 6;
+    string phone = 7;
+    string address = 8;
+    string city = 9;
+    string state = 10;
+    string country = 11;
+    string profile_pic = 12;
+    string status = 13;
+}
+
+message DoctorResponse {
+    int32 doctor_id = 1;
+    string name = 2;
+    string speciality = 3;
+    int32 hospital_id = 4;
+    string email = 5;
+    string password = 6;
+    string phone = 7;
+    string address = 8;
+    string city = 9;
+    string state = 10;
+    string country = 11;
+    string profile_pic = 12;
+    string status = 13;
+}
+
+message DoctorId {
+    int32 doctor_id = 1;
+}
+
+message HospitalId {
+    int32 hospital_id = 1;
+}
+
+message empty {}
+
+message DoctorList {
+    repeated DoctorResponse data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+

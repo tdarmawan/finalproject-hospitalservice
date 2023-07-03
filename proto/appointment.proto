@@ -1,0 +1,53 @@
+// make proto file for appointment service (createappointment, readappointment, emailappointment)
+
+syntax = "proto3";
+
+package appointment;
+
+option go_package = "./appointment";
+
+service AppointmentService {
+    rpc CreateAppointment(CreateAppointmentRequest) returns (CreateAppointmentResponse) {}
+    rpc ReadAppointmentById(AppointmentId) returns (ReadAppointmentResponse) {}
+    rpc EmailAppointment(EmailAppointmentRequest) returns (EmailAppointmentResponse) {}
+    rpc ReadAppointmentAll(Empty) returns (ReadAppointmentResponse) {}
+}
+
+message CreateAppointmentRequest {
+    uint32 id = 1;
+    string appointmentCode = 2;
+    string patientId = 3;
+    string patientEmail = 4;
+    int32 doctorId = 5;
+    int32 scheduleId = 6;
+    string status = 7;
+    string message = 8;
+}
+
+message CreateAppointmentResponse {
+    repeated CreateAppointmentRequest data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message AppointmentId {
+    string appointmentCode = 1;
+}
+
+message ReadAppointmentResponse {
+    repeated CreateAppointmentRequest data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message EmailAppointmentRequest {
+    string appointmentCode = 1;
+}
+
+message EmailAppointmentResponse {
+    repeated CreateAppointmentRequest data = 1;
+    string message = 2;
+    int32 status = 3;
+}
+
+message Empty {}
